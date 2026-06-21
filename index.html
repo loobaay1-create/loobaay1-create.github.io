@@ -553,7 +553,7 @@ footer{background:var(--fond2);border-top:1px solid var(--bordure);padding:48px 
     <div class="footer-col"><h4>Rejoindre</h4><a onclick="allerPage('livreur')">Devenir livreur</a><a onclick="ouvrirAuth('inscription')">Créer un compte</a><a onclick="allerPage('contact')">Contact</a></div>
     <div class="footer-col"><h4>Contact</h4><a href="tel:+221784405853">+221 78 440 58 53</a><a href="https://wa.me/221784405853" target="_blank">WhatsApp</a><a>contact@mtk.sn</a></div>
   </div>
-  <div class="footer-bottom">© 2025 MTK Thiak Thiak Swift · Tous droits réservés · <span onclick="allerPage('admin')" style="cursor:pointer;opacity:.3">Admin</span></div>
+  <div class="footer-bottom">© 2025 MTK Thiak Thiak Swift · Tous droits réservés · <span onclick="allerPage('admin')" style="cursor:pointer;opacity:.4;user-select:none" title="Espace Admin">·</span></div>
 </footer>
 
 <!-- MODAL AUTH -->
@@ -884,7 +884,18 @@ function connexionAdmin(){
   if(pwd===ADMIN_PWD){
     document.getElementById('admin-login-form').style.display='none';
     document.getElementById('admin-panel').style.display='block';
-    window.chargerCandidatures('tous');
+    // Attendre que le module Firebase soit prêt avant d'appeler chargerCandidatures
+    if(typeof window.chargerCandidatures === 'function'){
+      window.chargerCandidatures('tous');
+    } else {
+      document.getElementById('admin-candidats').innerHTML='<div style="color:var(--texte2);font-size:13px">Connexion Firebase en cours…</div>';
+      const attente = setInterval(()=>{
+        if(typeof window.chargerCandidatures === 'function'){
+          clearInterval(attente);
+          window.chargerCandidatures('tous');
+        }
+      }, 200);
+    }
   } else {
     afficherToast('❌ Mot de passe incorrect');
   }
@@ -901,7 +912,7 @@ function filtrerCandidats(filtre, btn){
   window.filtreActuel=filtre;
   document.querySelectorAll('.dash-nav-item').forEach(b=>b.classList.remove('act'));
   if(btn) btn.classList.add('act');
-  window.chargerCandidatures(filtre);
+  if(typeof window.chargerCandidatures === 'function') window.chargerCandidatures(filtre);
 }
 
 function allerPage(id){
@@ -951,4 +962,149 @@ function allerEtape(n){
     const op=document.getElementById('op'+i);
     op.classList.remove('act');
     if(i<n) op.style.color='#4ade80';
-    else if(i===n){op.classList.add('act');op.
+    else if(i===n){op.classList.add('act');op.style.color='var(--texte)';
+    } else op.style.color='var(--texte2)';
+  }
+}
+
+function afficherOffresCommande(){
+  const urgence=document.getElementById('o-urgence').value;
+  let livreurs=LIVREURS_DEFAUT;
+  if(urgence==='express') livreurs=livreurs.filter(l=>parseInt(l.eta)<25).sort((a,b)=>parseInt(a.eta)-parseInt(b.eta));
+  const html=livreurs.map((l,i)=>`
+    <div class="livreur-card" id="lcard-${i}" onclick="choisirLivreur(${i},this)">
+      <div class="livreur-av">${l.emoji}</div>
+      <div class="livreur-info">
+        <div class="livreur-nom">${l.nom}</div>
+        <div class="livreur-stars">${'★'.repeat(Math.floor(l.note))}${'☆'.repeat(5-Math.floor(l.note))} ${l.note} (${l.nb} avis)</div>
+        <div class="livreur-meta">${l.vehicule} · ${l.zone} · ${l.dist}</div>
+      </div>
+      <div class="livreur-prix">
+        <div class="prix-num">${l.prix.toLocaleString()} F</div>
+        <div class="prix-eta">~${l.eta}</div>
+      </div>
+    </div>`).join('');
+  document.getElementById('offres-list').innerHTML=html+'<button class="btn-rouge" style="width:100%;margin-top:4px;display:'+(livreurSelectionne!==null?'flex':'none')" id="btn-confirmer-livreur" onclick="allerEtape(3)"><i class="ti ti-arrow-right"></i> Continuer</button>';
+}
+
+function choisirLivreur(i,el){
+  document.querySelectorAll('.livreur-card').forEach(c=>c.classList.remove('sel'));
+  el.classList.add('sel');
+  livreurSelectionne=LIVREURS_DEFAUT[i];
+  const btn=document.getElementById('btn-confirmer-livreur');
+  if(btn){btn.style.display='flex';}
+  const dep=document.getElementById('o-depart').value.trim();
+  const arr=document.getElementById('o-arrivee').value.trim();
+  document.getElementById('confirm-summary').innerHTML=`
+    <div class="confirm-row"><span class="confirm-label">Trajet</span><span>${dep} → ${arr}</span></div>
+    <div class="confirm-row"><span class="confirm-label">Livreur</span><span>${livreurSelectionne.emoji} ${livreurSelectionne.nom}</span></div>
+    <div class="confirm-row"><span class="confirm-label">Véhicule</span><span>${livreurSelectionne.vehicule}</span></div>
+    <div class="confirm-row"><span class="confirm-label">ETA</span><span>~${livreurSelectionne.eta}</span></div>
+    <div class="confirm-row"><span class="confirm-label">Total</span><span>${livreurSelectionne.prix.toLocaleString()} FCFA</span></div>`;
+}
+
+function afficherOffresPage(){
+  const html=LIVREURS_DEFAUT.map(l=>`
+    <div class="livreur-card">
+      <div class="livreur-av">${l.emoji}</div>
+      <div class="livreur-info">
+        <div class="livreur-nom">${l.nom}</div>
+        <div class="livreur-stars">${'★'.repeat(Math.floor(l.note))}${'☆'.repeat(5-Math.floor(l.note))} ${l.note} (${l.nb} avis)</div>
+        <div class="livreur-meta">${l.vehicule} · ${l.zone} · ${l.dist}</div>
+      </div>
+      <div class="livreur-prix">
+        <div class="prix-num">${l.prix.toLocaleString()} F</div>
+        <div class="prix-eta">~${l.eta}</div>
+      </div>
+    </div>`).join('');
+  const el=document.getElementById('offres-standalone');
+  if(el) el.innerHTML=html;
+}
+
+function confirmerCommande(){
+  const nom=document.getElementById('o-nom').value.trim();
+  const tel=document.getElementById('o-tel').value.trim();
+  if(!nom||!tel){afficherToast('⚠️ Nom et téléphone requis');return;}
+  if(!livreurSelectionne){afficherToast('⚠️ Choisissez un livreur');return;}
+  const ref='MTK-'+Math.floor(10000+Math.random()*90000);
+  document.getElementById('cmd-ref').textContent=ref;
+  const commande={
+    ref, nom, tel,
+    depart:document.getElementById('o-depart').value.trim(),
+    arrivee:document.getElementById('o-arrivee').value.trim(),
+    type:document.getElementById('o-type').value,
+    urgence:document.getElementById('o-urgence').value,
+    paiement:document.getElementById('o-paiement').value,
+    livreur:livreurSelectionne.nom,
+    prix:livreurSelectionne.prix,
+    statut:'confirmee'
+  };
+  derniereCommande=commande;
+  if(window.confirmerCommandeFirebase) window.confirmerCommandeFirebase(commande);
+  allerEtape(4);
+  afficherToast('🎉 Commande confirmée ! Réf : '+ref);
+}
+
+function afficherSuivi(){
+  const el=document.getElementById('suivi-content');
+  if(!derniereCommande){return;}
+  el.innerHTML=`
+    <div class="suivi-card">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:20px">
+        <div><div style="font-size:16px;font-weight:700">${derniereCommande.ref}</div><div style="font-size:12px;color:var(--texte2)">${derniereCommande.depart} → ${derniereCommande.arrivee}</div></div>
+        <span class="badge badge-att">En cours</span>
+      </div>
+      <div class="suivi-step"><div class="suivi-dot done"><i class="ti ti-check"></i></div><div class="suivi-txt"><h4>Commande confirmée</h4><p>Votre commande a été enregistrée</p></div></div>
+      <div class="suivi-step"><div class="suivi-dot act"><i class="ti ti-user"></i></div><div class="suivi-txt"><h4>Livreur en route</h4><p>${derniereCommande.livreur} se dirige vers le point de départ</p></div></div>
+      <div class="suivi-step"><div class="suivi-dot wait"><i class="ti ti-package"></i></div><div class="suivi-txt"><h4>Colis récupéré</h4><p>En attente</p></div></div>
+      <div class="suivi-step"><div class="suivi-dot wait"><i class="ti ti-home"></i></div><div class="suivi-txt"><h4>Livré</h4><p>En attente</p></div></div>
+    </div>
+    <div class="suivi-card">
+      <div style="font-size:13px;font-weight:700;margin-bottom:12px">Votre livreur</div>
+      <div style="display:flex;gap:12px;align-items:center">
+        <div class="livreur-av" style="width:48px;height:48px;font-size:24px">${LIVREURS_DEFAUT.find(l=>l.nom===derniereCommande.livreur)?.emoji||'🧑'}</div>
+        <div><div style="font-weight:700">${derniereCommande.livreur}</div><div style="font-size:12px;color:var(--texte2)">ETA : ~${LIVREURS_DEFAUT.find(l=>l.nom===derniereCommande.livreur)?.eta||'25 min'}</div></div>
+        <a href="https://wa.me/221784405853" target="_blank" class="btn-rouge" style="margin-left:auto;padding:8px 14px;font-size:13px"><i class="ti ti-brand-whatsapp"></i></a>
+      </div>
+    </div>`;
+}
+
+function chargerDashboard(){
+  document.getElementById('dash-metrics').innerHTML=`<div class="metric"><div class="metric-val">${derniereCommande?1:0}</div><div class="metric-lbl">Commandes</div></div>`;
+  if(derniereCommande){
+    document.getElementById('dash-recent').innerHTML=`<div class="cmd-hist-card"><div class="cmd-hist-icon">📦</div><div class="cmd-hist-info"><div class="cmd-hist-ref">${derniereCommande.ref}</div><div class="cmd-hist-title">${derniereCommande.depart} → ${derniereCommande.arrivee}</div><div class="cmd-hist-date">${derniereCommande.livreur} · ${derniereCommande.prix?.toLocaleString()} FCFA</div></div><span class="badge badge-att">En cours</span></div>`;
+  } else {
+    document.getElementById('dash-recent').innerHTML='<div style="color:var(--texte2);font-size:13px">Aucune commande récente.</div>';
+  }
+  if(window.chargerCommandesFirebase){
+    window.chargerCommandesFirebase().then(cmds=>{
+      if(cmds.length){
+        document.getElementById('dash-metrics').innerHTML=`<div class="metric"><div class="metric-val">${cmds.length}</div><div class="metric-lbl">Commandes</div></div>`;
+        document.getElementById('dash-recent').innerHTML=cmds.slice(0,3).map(c=>`<div class="cmd-hist-card"><div class="cmd-hist-icon">📦</div><div class="cmd-hist-info"><div class="cmd-hist-ref">${c.ref}</div><div class="cmd-hist-title">${c.depart||''} → ${c.arrivee||''}</div><div class="cmd-hist-date">${c.livreur||''}</div></div><span class="badge badge-att">Livré</span></div>`).join('');
+      }
+    }).catch(()=>{});
+  }
+}
+
+function afficherOnglet(id, btn){
+  ['overview','commandes','profil'].forEach(x=>{ document.getElementById('dash-'+x).style.display=x===id?'block':'none'; });
+  document.querySelectorAll('.dash-nav-item').forEach(b=>b.classList.remove('act'));
+  if(btn) btn.classList.add('act');
+  if(id==='commandes' && window.chargerCommandesFirebase){
+    window.chargerCommandesFirebase().then(cmds=>{
+      document.getElementById('dash-all-cmds').innerHTML=cmds.length?cmds.map(c=>`<div class="cmd-hist-card"><div class="cmd-hist-icon">📦</div><div class="cmd-hist-info"><div class="cmd-hist-ref">${c.ref}</div><div class="cmd-hist-title">${c.depart||''} → ${c.arrivee||''}</div><div class="cmd-hist-date">${c.livreur||''} · ${c.prix?.toLocaleString()||''} FCFA</div></div><span class="badge badge-att">Livré</span></div>`).join(''):'<div style="color:var(--texte2);font-size:13px;padding:20px 0">Aucune commande.</div>';
+    }).catch(()=>{});
+  }
+}
+
+function afficherToast(msg){
+  const t=document.getElementById('toast');
+  t.textContent=msg; t.classList.add('show');
+  setTimeout(()=>t.classList.remove('show'),3000);
+}
+
+// Accès admin via hash URL
+if(location.hash==='#admin') allerPage('admin');
+</script>
+</body>
+</html>
