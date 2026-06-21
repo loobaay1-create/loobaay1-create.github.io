@@ -1,4 +1,4 @@
-r en<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="fr">
 <head>
 <meta charset="UTF-8">
@@ -14,50 +14,95 @@ r en<!DOCTYPE html>
 }
 body{font-family:'Open Sans',sans-serif;background:var(--noir);color:var(--texte);min-height:100vh}
 h1,h2,h3,h4{font-family:'Montserrat',sans-serif}
+
+/* NAV */
 nav{background:var(--fond);border-bottom:1px solid var(--bordure);position:sticky;top:0;z-index:100;padding:0 16px}
-.nav-inner{max-width:1100px;margin:0 auto;display:flex;align-items:center;gap:12px;height:56px}
-.logo{font-family:'Montserrat',sans-serif;font-weight:900;font-size:22px;color:var(--rouge);letter-spacing:-1px;cursor:pointer}
-.logo span{color:var(--texte);font-size:13px;font-weight:600;margin-left:6px}
+.nav-inner{max-width:1100px;margin:0 auto;display:flex;align-items:center;gap:12px;height:60px}
+.logo{font-family:'Montserrat',sans-serif;font-weight:900;font-size:24px;color:var(--rouge);letter-spacing:-1px;cursor:pointer;display:flex;align-items:center;gap:8px}
+.logo-badge{background:var(--rouge);color:#fff;font-size:10px;font-weight:700;padding:2px 6px;border-radius:4px;letter-spacing:1px}
 nav a.nl{color:var(--texte2);font-size:13px;font-weight:600;text-decoration:none;padding:6px 10px;border-radius:6px;cursor:pointer;background:none;border:none;font-family:inherit}
 nav a.nl:hover,nav a.nl.act{color:var(--texte);background:var(--fond3)}
 .nav-sp{flex:1}
 #nav-user-btn{background:var(--rouge);color:#fff;border:none;border-radius:6px;padding:8px 14px;font-size:13px;font-weight:700;cursor:pointer;font-family:inherit;display:flex;align-items:center;gap:6px}
 #nav-signup-btn{background:transparent;color:var(--texte2);border:1px solid var(--bordure);border-radius:6px;padding:8px 14px;font-size:13px;font-weight:600;cursor:pointer;font-family:inherit}
 #nav-signup-btn:hover{color:var(--texte);border-color:#555}
-.user-drop{position:absolute;top:62px;right:16px;background:var(--fond2);border:1px solid var(--bordure);border-radius:10px;min-width:180px;display:none;z-index:200;overflow:hidden}
+.user-drop{position:absolute;top:66px;right:16px;background:var(--fond2);border:1px solid var(--bordure);border-radius:10px;min-width:180px;display:none;z-index:200;overflow:hidden}
 .user-drop a{display:block;padding:12px 16px;font-size:13px;color:var(--texte);cursor:pointer;text-decoration:none}
 .user-drop a:hover{background:var(--fond3)}
 .user-drop a.danger{color:#f87171}
-.page{display:none;min-height:calc(100vh - 56px)}
+
+/* WHATSAPP FLOTTANT */
+.wa-float{position:fixed;bottom:24px;right:24px;z-index:999;display:flex;flex-direction:column;align-items:flex-end;gap:10px}
+.wa-btn{background:#25D366;color:#fff;border:none;border-radius:50px;padding:14px 20px;font-size:15px;font-weight:700;cursor:pointer;display:flex;align-items:center;gap:10px;box-shadow:0 4px 20px rgba(37,211,102,0.4);font-family:inherit;transition:transform .2s,box-shadow .2s}
+.wa-btn:hover{transform:translateY(-2px);box-shadow:0 6px 28px rgba(37,211,102,0.5)}
+.wa-bubble{background:var(--fond2);border:1px solid var(--bordure);border-radius:12px;padding:12px 16px;font-size:13px;color:var(--texte);max-width:220px;text-align:right;box-shadow:0 4px 16px rgba(0,0,0,.3);animation:fadeIn .3s ease}
+@keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+
+/* PAGES */
+.page{display:none;min-height:calc(100vh - 60px)}
 .page.act{display:block}
-.hero{background:linear-gradient(135deg,#0a0a0a 0%,#1a0000 100%);padding:72px 16px;text-align:center;position:relative;overflow:hidden}
-.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 50% 50%,rgba(204,0,0,0.15),transparent)}
+
+/* HERO */
+.hero{background:linear-gradient(135deg,#0a0a0a 0%,#1a0000 100%);padding:80px 16px;text-align:center;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 50% 50%,rgba(204,0,0,0.18),transparent)}
+.hero-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(204,0,0,.15);border:1px solid rgba(204,0,0,.3);border-radius:50px;padding:6px 14px;font-size:12px;font-weight:700;color:var(--rouge);margin-bottom:24px;letter-spacing:.5px}
 .hero h1{font-size:clamp(32px,6vw,64px);font-weight:900;line-height:1.1;letter-spacing:-2px;max-width:800px;margin:0 auto 20px}
 .hero h1 span{color:var(--rouge)}
 .hero p{font-size:clamp(14px,2vw,18px);color:var(--texte2);max-width:540px;margin:0 auto 36px;line-height:1.7}
 .hero-btns{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
-.btn-rouge{background:var(--rouge);color:#fff;border:none;border-radius:8px;padding:14px 28px;font-size:15px;font-weight:700;cursor:pointer;font-family:inherit;display:inline-flex;align-items:center;gap:8px;transition:background .15s}
-.btn-rouge:hover{background:var(--rouge-f)}
+.btn-rouge{background:var(--rouge);color:#fff;border:none;border-radius:8px;padding:14px 28px;font-size:15px;font-weight:700;cursor:pointer;font-family:inherit;display:inline-flex;align-items:center;gap:8px;transition:all .15s}
+.btn-rouge:hover{background:var(--rouge-f);transform:translateY(-1px)}
 .btn-ghost{background:transparent;color:var(--texte);border:1px solid var(--bordure);border-radius:8px;padding:14px 28px;font-size:15px;font-weight:600;cursor:pointer;font-family:inherit;display:inline-flex;align-items:center;gap:8px}
 .btn-ghost:hover{border-color:#555}
+.hero-trust{display:flex;align-items:center;justify-content:center;gap:16px;margin-top:32px;flex-wrap:wrap}
+.trust-item{display:flex;align-items:center;gap:6px;font-size:12px;color:var(--texte2)}
+.trust-dot{width:6px;height:6px;border-radius:50%;background:var(--rouge)}
+
+/* STATS */
 .stats-bar{display:flex;justify-content:center;background:var(--fond2);border-top:1px solid var(--bordure);border-bottom:1px solid var(--bordure)}
-.stat-item{flex:1;max-width:220px;padding:20px 16px;text-align:center;border-right:1px solid var(--bordure)}
+.stat-item{flex:1;max-width:220px;padding:24px 16px;text-align:center;border-right:1px solid var(--bordure)}
 .stat-item:last-child{border-right:none}
-.stat-num{font-family:'Montserrat',sans-serif;font-size:28px;font-weight:900;color:var(--rouge)}
-.stat-lbl{font-size:11px;color:var(--texte2);margin-top:3px;font-weight:600;text-transform:uppercase;letter-spacing:.5px}
-.section{max-width:1100px;margin:0 auto;padding:60px 16px}
+.stat-num{font-family:'Montserrat',sans-serif;font-size:30px;font-weight:900;color:var(--rouge)}
+.stat-lbl{font-size:11px;color:var(--texte2);margin-top:4px;font-weight:600;text-transform:uppercase;letter-spacing:.5px}
+
+/* SECTIONS */
+.section{max-width:1100px;margin:0 auto;padding:70px 16px}
 .section-title{font-size:clamp(22px,4vw,36px);font-weight:900;margin-bottom:8px;letter-spacing:-1px}
-.section-sub{color:var(--texte2);font-size:14px;margin-bottom:36px;line-height:1.6}
+.section-sub{color:var(--texte2);font-size:14px;margin-bottom:40px;line-height:1.6}
 .grid-3{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px}
-.card{background:var(--fond2);border:1px solid var(--bordure);border-radius:12px;padding:24px}
-.card-icon{width:44px;height:44px;border-radius:10px;background:rgba(204,0,0,.15);display:flex;align-items:center;justify-content:center;margin-bottom:16px;color:var(--rouge);font-size:22px}
+.card{background:var(--fond2);border:1px solid var(--bordure);border-radius:14px;padding:24px;transition:border-color .2s}
+.card:hover{border-color:#444}
+.card-icon{width:48px;height:48px;border-radius:12px;background:rgba(204,0,0,.12);display:flex;align-items:center;justify-content:center;margin-bottom:16px;color:var(--rouge);font-size:24px}
 .card h3{font-size:15px;font-weight:700;margin-bottom:8px}
-.card p{font-size:13px;color:var(--texte2);line-height:1.6}
-.step-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:24px;counter-reset:steps}
-.step{counter-increment:steps;position:relative;padding-left:44px}
-.step::before{content:counter(steps);position:absolute;left:0;top:0;width:32px;height:32px;background:var(--rouge);border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Montserrat',sans-serif;font-weight:900;font-size:14px}
-.step h3{font-size:14px;font-weight:700;margin-bottom:6px}
-.step p{font-size:13px;color:var(--texte2);line-height:1.6}
+.card p{font-size:13px;color:var(--texte2);line-height:1.7}
+
+/* STEPS */
+.step-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:32px;counter-reset:steps}
+.step{counter-increment:steps;position:relative;padding-left:48px}
+.step::before{content:counter(steps);position:absolute;left:0;top:0;width:36px;height:36px;background:var(--rouge);border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Montserrat',sans-serif;font-weight:900;font-size:15px}
+.step h3{font-size:15px;font-weight:700;margin-bottom:8px}
+.step p{font-size:13px;color:var(--texte2);line-height:1.7}
+
+/* AVIS */
+.avis-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px}
+.avis-card{background:var(--fond2);border:1px solid var(--bordure);border-radius:14px;padding:20px}
+.avis-stars{color:#f59e0b;font-size:14px;margin-bottom:10px}
+.avis-text{font-size:13px;color:var(--texte);line-height:1.7;margin-bottom:14px;font-style:italic}
+.avis-author{display:flex;align-items:center;gap:10px}
+.avis-av{width:36px;height:36px;border-radius:50%;background:var(--rouge);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:14px;flex-shrink:0}
+.avis-nom{font-size:13px;font-weight:700}
+.avis-ville{font-size:11px;color:var(--texte2)}
+
+/* FAQ */
+.faq-item{border:1px solid var(--bordure);border-radius:12px;margin-bottom:10px;overflow:hidden}
+.faq-q{padding:16px 20px;font-size:14px;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:space-between;background:var(--fond2);transition:background .15s}
+.faq-q:hover{background:var(--fond3)}
+.faq-a{padding:0 20px;font-size:13px;color:var(--texte2);line-height:1.7;max-height:0;overflow:hidden;transition:max-height .3s,padding .3s}
+.faq-item.open .faq-a{max-height:200px;padding:14px 20px}
+.faq-item.open .faq-icon{transform:rotate(45deg)}
+.faq-icon{transition:transform .3s;color:var(--rouge);font-size:18px}
+
+/* COMMANDER */
 .cmd-wrap{max-width:600px;margin:0 auto;padding:32px 16px}
 .cmd-title{font-size:22px;font-weight:900;margin-bottom:4px;letter-spacing:-1px}
 .cmd-sub{color:var(--texte2);font-size:13px;margin-bottom:28px}
@@ -77,21 +122,25 @@ nav a.nl:hover,nav a.nl.act{color:var(--texte);background:var(--fond3)}
 .btn-full{width:100%;padding:14px;background:var(--rouge);color:#fff;border:none;border-radius:8px;font-size:15px;font-weight:700;cursor:pointer;font-family:inherit;display:flex;align-items:center;justify-content:center;gap:8px;margin-top:8px;transition:background .15s}
 .btn-full:hover{background:var(--rouge-f)}
 .btn-full:disabled{opacity:.5;cursor:not-allowed}
-.livreur-card{background:var(--fond2);border:1.5px solid var(--bordure);border-radius:12px;padding:16px;display:flex;gap:14px;align-items:center;margin-bottom:12px;cursor:pointer;transition:border-color .2s}
-.livreur-card:hover{border-color:var(--rouge)}
+
+/* LIVREURS */
+.livreur-card{background:var(--fond2);border:1.5px solid var(--bordure);border-radius:14px;padding:18px;display:flex;gap:14px;align-items:center;margin-bottom:12px;cursor:pointer;transition:border-color .2s,box-shadow .2s}
+.livreur-card:hover{border-color:var(--rouge);box-shadow:0 4px 20px rgba(204,0,0,.1)}
 .livreur-card.sel{border-color:var(--rouge);background:rgba(204,0,0,.07)}
-.livreur-av{font-size:36px;width:52px;text-align:center;flex-shrink:0}
+.livreur-av{font-size:40px;width:56px;text-align:center;flex-shrink:0}
 .livreur-info{flex:1}
-.livreur-nom{font-weight:700;font-size:14px;margin-bottom:3px}
-.livreur-stars{font-size:12px;color:#f59e0b;margin-bottom:3px}
+.livreur-nom{font-weight:700;font-size:15px;margin-bottom:4px}
+.livreur-stars{font-size:12px;color:#f59e0b;margin-bottom:4px}
 .livreur-meta{font-size:11px;color:var(--texte2)}
 .livreur-prix{text-align:right;flex-shrink:0}
-.prix-num{font-family:'Montserrat',sans-serif;font-size:17px;font-weight:900;color:var(--rouge)}
+.prix-num{font-family:'Montserrat',sans-serif;font-size:18px;font-weight:900;color:var(--rouge)}
 .prix-eta{font-size:11px;color:var(--texte2);margin-top:3px}
 .confirm-box{background:var(--fond2);border:1px solid var(--bordure);border-radius:12px;padding:20px;margin-bottom:20px}
-.confirm-row{display:flex;justify-content:space-between;font-size:13px;padding:7px 0;border-bottom:1px solid var(--bordure)}
+.confirm-row{display:flex;justify-content:space-between;font-size:13px;padding:8px 0;border-bottom:1px solid var(--bordure)}
 .confirm-row:last-child{border-bottom:none;font-weight:700;font-size:15px;color:var(--rouge)}
 .confirm-label{color:var(--texte2)}
+
+/* SUIVI */
 .suivi-wrap{max-width:540px;margin:0 auto;padding:32px 16px}
 .suivi-card{background:var(--fond2);border:1px solid var(--bordure);border-radius:14px;padding:24px;margin-bottom:20px}
 .suivi-step{display:flex;gap:14px;align-items:flex-start;position:relative;padding-bottom:20px}
@@ -104,6 +153,8 @@ nav a.nl:hover,nav a.nl.act{color:var(--texte);background:var(--fond3)}
 .suivi-dot.wait{background:var(--fond3);border:2px solid var(--bordure);color:var(--texte2)}
 .suivi-txt h4{font-size:14px;font-weight:700;margin-bottom:2px}
 .suivi-txt p{font-size:12px;color:var(--texte2)}
+
+/* DASHBOARD */
 .dash-wrap{max-width:900px;margin:0 auto;padding:32px 16px}
 .dash-header{display:flex;align-items:center;gap:16px;margin-bottom:32px}
 .dash-av{width:56px;height:56px;border-radius:50%;background:var(--rouge);display:flex;align-items:center;justify-content:center;font-family:'Montserrat',sans-serif;font-weight:900;font-size:20px}
@@ -125,26 +176,35 @@ nav a.nl:hover,nav a.nl.act{color:var(--texte);background:var(--fond3)}
 .metric{background:var(--fond2);border:1px solid var(--bordure);border-radius:10px;padding:16px}
 .metric-val{font-family:'Montserrat',sans-serif;font-size:26px;font-weight:900;color:var(--rouge)}
 .metric-lbl{font-size:11px;color:var(--texte2);margin-top:3px;font-weight:600;text-transform:uppercase;letter-spacing:.5px}
+
+/* LIVREUR PAGE */
 .livreur-page{max-width:600px;margin:0 auto;padding:40px 16px}
 .livreur-hero{text-align:center;margin-bottom:40px}
 .livreur-hero h1{font-size:28px;font-weight:900;letter-spacing:-1px;margin-bottom:10px}
 .livreur-hero p{font-size:14px;color:var(--texte2);line-height:1.7}
 .avantages{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:32px}
 .avantage{background:var(--fond2);border:1px solid var(--bordure);border-radius:10px;padding:14px;display:flex;gap:10px;align-items:flex-start}
-.avantage-icon{color:var(--rouge);font-size:18px;margin-top:1px}
+.avantage-icon{color:var(--rouge);font-size:20px;margin-top:1px}
 .avantage h4{font-size:13px;font-weight:700;margin-bottom:2px}
 .avantage p{font-size:11px;color:var(--texte2)}
+
+/* CONTACT */
 .contact-wrap{max-width:600px;margin:0 auto;padding:40px 16px}
 .offres-page{max-width:800px;margin:0 auto;padding:40px 16px}
-footer{background:var(--fond2);border-top:1px solid var(--bordure);padding:40px 16px;margin-top:60px}
+
+/* FOOTER */
+footer{background:var(--fond2);border-top:1px solid var(--bordure);padding:48px 16px;margin-top:60px}
 .footer-inner{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:32px}
-.footer-logo{font-family:'Montserrat',sans-serif;font-weight:900;font-size:24px;color:var(--rouge);margin-bottom:10px}
-.footer-desc{font-size:13px;color:var(--texte2);line-height:1.6}
+.footer-logo{font-family:'Montserrat',sans-serif;font-weight:900;font-size:26px;color:var(--rouge);margin-bottom:10px}
+.footer-desc{font-size:13px;color:var(--texte2);line-height:1.7}
 .footer-col h4{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:var(--texte2);margin-bottom:14px}
 .footer-col a{display:block;font-size:13px;color:var(--texte2);text-decoration:none;margin-bottom:8px;cursor:pointer}
 .footer-col a:hover{color:var(--texte)}
+.footer-wa{display:inline-flex;align-items:center;gap:8px;background:#25D366;color:#fff;border-radius:8px;padding:8px 14px;font-size:13px;font-weight:700;text-decoration:none;margin-top:8px}
 .footer-bottom{text-align:center;font-size:12px;color:var(--texte2);margin-top:32px;padding-top:20px;border-top:1px solid var(--bordure)}
-.modal-bg{position:fixed;inset:0;background:rgba(0,0,0,.8);z-index:1000;display:none;align-items:center;justify-content:center;padding:16px}
+
+/* MODAL */
+.modal-bg{position:fixed;inset:0;background:rgba(0,0,0,.85);z-index:1000;display:none;align-items:center;justify-content:center;padding:16px}
 .modal-bg.open{display:flex}
 .modal{background:var(--fond);border:1px solid var(--bordure);border-radius:16px;width:100%;max-width:420px;max-height:90vh;overflow-y:auto;position:relative}
 .modal-head{display:flex;align-items:center;justify-content:space-between;padding:20px 20px 0}
@@ -156,22 +216,45 @@ footer{background:var(--fond2);border-top:1px solid var(--bordure);padding:40px 
 .modal-body{padding:20px}
 .modal-form{display:none}
 .modal-form.act{display:block}
+
+/* TOAST */
 .toast{position:fixed;bottom:28px;left:50%;transform:translateX(-50%) translateY(80px);background:#1a1a1a;border:1px solid var(--bordure);border-radius:10px;padding:12px 20px;font-size:13px;font-weight:600;color:var(--texte);z-index:9999;transition:transform .3s;pointer-events:none;white-space:nowrap;max-width:90vw;text-align:center}
 .toast.show{transform:translateX(-50%) translateY(0)}
-.loading-overlay{position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:500;display:flex;align-items:center;justify-content:center;display:none}
-.loading-overlay.show{display:flex}
-.spinner{width:40px;height:40px;border:3px solid var(--bordure);border-top-color:var(--rouge);border-radius:50%;animation:spin .8s linear infinite}
-@keyframes spin{to{transform:rotate(360deg)}}
-@media(max-width:600px){.form-row{grid-template-columns:1fr}.stats-bar{flex-wrap:wrap}.stat-item{min-width:45%}.avantages{grid-template-columns:1fr}}
+
+/* BANDEAU CONFIANCE */
+.trust-bar{background:var(--rouge);padding:10px 16px;text-align:center;font-size:13px;font-weight:600;color:#fff;letter-spacing:.3px}
+
+@media(max-width:600px){
+  .form-row{grid-template-columns:1fr}
+  .stats-bar{flex-wrap:wrap}
+  .stat-item{min-width:45%}
+  .avantages{grid-template-columns:1fr}
+  .wa-btn span{display:none}
+}
 </style>
 </head>
 <body>
 
-<div class="loading-overlay" id="loading"><div class="spinner"></div></div>
+<!-- BANDEAU CONFIANCE -->
+<div class="trust-bar">
+  🚀 Livraison en 20 min · Livreurs vérifiés · Paiement à la réception · 7j/7
+</div>
+
+<!-- WHATSAPP FLOTTANT -->
+<div class="wa-float">
+  <div class="wa-bubble" id="wa-bubble">Besoin d'aide ? Écrivez-nous sur WhatsApp !</div>
+  <a href="https://wa.me/221784405853" target="_blank" class="wa-btn">
+    <i class="ti ti-brand-whatsapp" style="font-size:22px"></i>
+    <span>WhatsApp MTK</span>
+  </a>
+</div>
 
 <nav>
   <div class="nav-inner">
-    <div class="logo" onclick="allerPage('accueil')">MTK <span>Thiak Thiak Swift</span></div>
+    <div class="logo" onclick="allerPage('accueil')">
+      MTK
+      <div class="logo-badge">LIVRAISON</div>
+    </div>
     <div style="display:flex;gap:2px">
       <a class="nl act" id="nl-accueil" onclick="allerPage('accueil')">Accueil</a>
       <a class="nl" id="nl-commander" onclick="allerPage('commander')">Commander</a>
@@ -193,47 +276,112 @@ footer{background:var(--fond2);border-top:1px solid var(--bordure);padding:40px 
 <!-- ACCUEIL -->
 <div class="page act" id="pg-accueil">
   <div class="hero">
+    <div class="hero-badge"><i class="ti ti-bolt"></i> N°1 de la livraison rapide au Sénégal</div>
     <h1>Livraison rapide<br><span>partout au Sénégal</span></h1>
-    <p>Des livreurs de confiance, disponibles maintenant. Le prix se discute, la confiance nous unit.</p>
+    <p>Des livreurs de confiance, disponibles maintenant. Recevez votre colis en moins de 20 minutes à Dakar et banlieue.</p>
     <div class="hero-btns">
       <button class="btn-rouge" onclick="allerPage('commander')"><i class="ti ti-rocket"></i> Commander maintenant</button>
-      <button class="btn-ghost" onclick="allerPage('offres')"><i class="ti ti-users"></i> Voir les livreurs</button>
+      <a href="https://wa.me/221784405853" target="_blank" class="btn-ghost"><i class="ti ti-brand-whatsapp"></i> WhatsApp</a>
+    </div>
+    <div class="hero-trust">
+      <div class="trust-item"><div class="trust-dot"></div> Paiement à la réception</div>
+      <div class="trust-item"><div class="trust-dot"></div> Livreurs vérifiés</div>
+      <div class="trust-item"><div class="trust-dot"></div> Support 7j/7</div>
+      <div class="trust-item"><div class="trust-dot"></div> Suivi en temps réel</div>
     </div>
   </div>
+
   <div class="stats-bar">
     <div class="stat-item"><div class="stat-num">500+</div><div class="stat-lbl">Livreurs actifs</div></div>
     <div class="stat-item"><div class="stat-num">20 min</div><div class="stat-lbl">Délai moyen</div></div>
     <div class="stat-item"><div class="stat-num">14 villes</div><div class="stat-lbl">Au Sénégal</div></div>
     <div class="stat-item"><div class="stat-num">4.8★</div><div class="stat-lbl">Note moyenne</div></div>
   </div>
+
   <div class="section">
     <div class="section-title">Pourquoi choisir MTK ?</div>
-    <div class="section-sub">Une plateforme pensée pour vous, simple et fiable.</div>
+    <div class="section-sub">Une plateforme pensée pour vous, simple, rapide et fiable.</div>
     <div class="grid-3">
-      <div class="card"><div class="card-icon"><i class="ti ti-bolt"></i></div><h3>Ultra rapide</h3><p>Livraison en 20 minutes en moyenne dans Dakar et banlieue.</p></div>
-      <div class="card"><div class="card-icon"><i class="ti ti-shield-check"></i></div><h3>Livreurs vérifiés</h3><p>Chaque livreur est contrôlé, noté et formé par notre équipe.</p></div>
-      <div class="card"><div class="card-icon"><i class="ti ti-coin"></i></div><h3>Prix négociables</h3><p>Le prix est transparent. Vous choisissez l'offre qui vous convient.</p></div>
-      <div class="card"><div class="card-icon"><i class="ti ti-map-pin"></i></div><h3>Suivi en temps réel</h3><p>Suivez votre colis étape par étape jusqu'à la livraison.</p></div>
-      <div class="card"><div class="card-icon"><i class="ti ti-headset"></i></div><h3>Support 7j/7</h3><p>Notre équipe est disponible tous les jours de 7h à 22h.</p></div>
-      <div class="card"><div class="card-icon"><i class="ti ti-star"></i></div><h3>Évaluation mutuelle</h3><p>Notez votre livreur et contribuez à la qualité du service.</p></div>
+      <div class="card"><div class="card-icon"><i class="ti ti-bolt"></i></div><h3>Ultra rapide</h3><p>Livraison en 20 minutes en moyenne dans Dakar et banlieue. Express disponible 24h/24.</p></div>
+      <div class="card"><div class="card-icon"><i class="ti ti-shield-check"></i></div><h3>Livreurs vérifiés</h3><p>Chaque livreur est contrôlé, noté et formé par notre équipe avant d'être accepté.</p></div>
+      <div class="card"><div class="card-icon"><i class="ti ti-coin"></i></div><h3>Prix transparents</h3><p>Pas de surprise. Vous voyez le prix avant de confirmer. Paiement à la réception.</p></div>
+      <div class="card"><div class="card-icon"><i class="ti ti-map-pin"></i></div><h3>Suivi en temps réel</h3><p>Suivez votre colis étape par étape jusqu'à la livraison depuis votre téléphone.</p></div>
+      <div class="card"><div class="card-icon"><i class="ti ti-headset"></i></div><h3>Support 7j/7</h3><p>Notre équipe est disponible tous les jours de 7h à 22h par téléphone et WhatsApp.</p></div>
+      <div class="card"><div class="card-icon"><i class="ti ti-star"></i></div><h3>Évaluation mutuelle</h3><p>Notez votre livreur après chaque livraison pour maintenir la qualité du service.</p></div>
     </div>
   </div>
-  <div class="section" style="background:var(--fond2);max-width:100%;padding:60px 16px">
+
+  <div class="section" style="background:var(--fond2);max-width:100%;padding:70px 16px">
     <div style="max-width:1100px;margin:0 auto">
       <div class="section-title">Comment ça marche ?</div>
       <div class="section-sub">4 étapes simples pour recevoir votre colis.</div>
       <div class="step-row">
-        <div class="step"><h3>Créez votre commande</h3><p>Renseignez le point de départ, l'arrivée et la description de votre colis.</p></div>
-        <div class="step"><h3>Choisissez un livreur</h3><p>Comparez les offres et sélectionnez le livreur qui vous convient.</p></div>
-        <div class="step"><h3>Suivi en direct</h3><p>Suivez la progression de votre livraison à chaque instant.</p></div>
-        <div class="step"><h3>Réception et paiement</h3><p>Payez à la réception et notez votre expérience.</p></div>
+        <div class="step"><h3>Créez votre commande</h3><p>Renseignez le point de départ, l'arrivée et la description de votre colis en 2 minutes.</p></div>
+        <div class="step"><h3>Choisissez un livreur</h3><p>Comparez les offres, les notes et les prix. Sélectionnez le livreur qui vous convient.</p></div>
+        <div class="step"><h3>Suivi en direct</h3><p>Suivez la progression de votre livraison à chaque instant sur votre téléphone.</p></div>
+        <div class="step"><h3>Réception et paiement</h3><p>Payez uniquement à la réception de votre colis. Notez ensuite votre expérience.</p></div>
       </div>
     </div>
   </div>
+
+  <!-- AVIS CLIENTS -->
+  <div class="section">
+    <div class="section-title">Ce que disent nos clients</div>
+    <div class="section-sub">Des milliers de Sénégalais nous font confiance chaque jour.</div>
+    <div class="avis-grid">
+      <div class="avis-card">
+        <div class="avis-stars">★★★★★</div>
+        <div class="avis-text">"Service impeccable ! Mon colis est arrivé en moins de 25 minutes. Le livreur était très professionnel et sympa."</div>
+        <div class="avis-author"><div class="avis-av">F</div><div><div class="avis-nom">Fatou Diop</div><div class="avis-ville">Dakar Plateau</div></div></div>
+      </div>
+      <div class="avis-card">
+        <div class="avis-stars">★★★★★</div>
+        <div class="avis-text">"J'utilise MTK tous les jours pour mon business. Rapide, fiable et le prix est correct. Je recommande vivement !"</div>
+        <div class="avis-author"><div class="avis-av">M</div><div><div class="avis-nom">Moussa Ndiaye</div><div class="avis-ville">Médina</div></div></div>
+      </div>
+      <div class="avis-card">
+        <div class="avis-stars">★★★★☆</div>
+        <div class="avis-text">"Très bonne application. Le suivi en temps réel est pratique. Je sais toujours où est mon colis. Merci MTK !"</div>
+        <div class="avis-author"><div class="avis-av">A</div><div><div class="avis-nom">Aminata Sall</div><div class="avis-ville">Almadies</div></div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FAQ -->
+  <div class="section" style="background:var(--fond2);max-width:100%;padding:70px 16px">
+    <div style="max-width:700px;margin:0 auto">
+      <div class="section-title">Questions fréquentes</div>
+      <div class="section-sub">Tout ce que vous devez savoir sur MTK.</div>
+      <div class="faq-item" onclick="toggleFaq(this)">
+        <div class="faq-q">Comment payer ma livraison ? <i class="ti ti-plus faq-icon"></i></div>
+        <div class="faq-a">Vous payez uniquement à la réception de votre colis. Nous acceptons le cash, Wave, Orange Money et carte bancaire. Aucun paiement à l'avance.</div>
+      </div>
+      <div class="faq-item" onclick="toggleFaq(this)">
+        <div class="faq-q">Quelles villes sont couvertes ? <i class="ti ti-plus faq-icon"></i></div>
+        <div class="faq-a">Nous couvrons Dakar et toute sa banlieue (Pikine, Guédiawaye, Rufisque), ainsi que Thiès, Saint-Louis, Ziguinchor et 8 autres villes au Sénégal.</div>
+      </div>
+      <div class="faq-item" onclick="toggleFaq(this)">
+        <div class="faq-q">Que faire si mon colis est endommagé ? <i class="ti ti-plus faq-icon"></i></div>
+        <div class="faq-a">Tous nos livreurs sont assurés. En cas de problème, contactez-nous immédiatement sur WhatsApp au +221 78 440 58 53 et nous trouvons une solution dans les 24h.</div>
+      </div>
+      <div class="faq-item" onclick="toggleFaq(this)">
+        <div class="faq-q">Combien coûte une livraison ? <i class="ti ti-plus faq-icon"></i></div>
+        <div class="faq-a">Les prix commencent à partir de 1 500 FCFA selon la distance et le type de colis. Vous voyez le prix exact avant de confirmer votre commande.</div>
+      </div>
+      <div class="faq-item" onclick="toggleFaq(this)">
+        <div class="faq-q">MTK livre-t-il la nuit ? <i class="ti ti-plus faq-icon"></i></div>
+        <div class="faq-a">Oui ! Nos livreurs sont disponibles de 6h à minuit, 7 jours sur 7. Pour les urgences de nuit, contactez-nous sur WhatsApp.</div>
+      </div>
+    </div>
+  </div>
+
   <div class="section" style="text-align:center">
     <div class="section-title">Prêt à commander ?</div>
-    <div class="section-sub">Rejoignez des milliers de clients satisfaits chaque jour.</div>
-    <button class="btn-rouge" style="margin:0 auto" onclick="allerPage('commander')"><i class="ti ti-rocket"></i> Lancer une livraison</button>
+    <div class="section-sub">Rejoignez des milliers de clients satisfaits chaque jour au Sénégal.</div>
+    <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
+      <button class="btn-rouge" onclick="allerPage('commander')"><i class="ti ti-rocket"></i> Lancer une livraison</button>
+      <a href="https://wa.me/221784405853" target="_blank" class="btn-ghost"><i class="ti ti-brand-whatsapp"></i> Nous contacter</a>
+    </div>
   </div>
 </div>
 
@@ -300,7 +448,7 @@ footer{background:var(--fond2);border-top:1px solid var(--bordure);padding:40px 
         <div style="font-size:20px;font-weight:900;margin-bottom:8px">Commande confirmée !</div>
         <div style="font-size:13px;color:var(--texte2);margin-bottom:24px">Votre livreur est en route. Référence : <strong id="cmd-ref" style="color:var(--rouge)"></strong></div>
         <button class="btn-rouge" style="margin:0 auto 10px" onclick="allerPage('suivi')"><i class="ti ti-map-pin"></i> Suivre ma livraison</button><br>
-        <button class="btn-ghost" style="margin:0 auto" onclick="nouvelleCommande()"><i class="ti ti-plus"></i> Nouvelle commande</button>
+        <a href="https://wa.me/221784405853" target="_blank" class="btn-ghost" style="margin:10px auto 0"><i class="ti ti-brand-whatsapp"></i> Contacter le support</a>
       </div>
     </div>
   </div>
@@ -350,7 +498,7 @@ footer{background:var(--fond2);border-top:1px solid var(--bordure);padding:40px 
       <div style="font-size:14px;font-weight:700;margin-bottom:14px">Dernières commandes</div>
       <div id="dash-recent"><div style="color:var(--texte2);font-size:13px">Chargement…</div></div>
     </div>
-    <div id="dash-commandes" style="display:none"><div id="dash-all-cmds"><div style="color:var(--texte2);font-size:13px">Chargement…</div></div></div>
+    <div id="dash-commandes" style="display:none"><div id="dash-all-cmds"></div></div>
     <div id="dash-profil" style="display:none">
       <div class="card" style="max-width:480px">
         <div style="font-size:15px;font-weight:700;margin-bottom:20px">Mes informations</div>
@@ -368,18 +516,18 @@ footer{background:var(--fond2);border-top:1px solid var(--bordure);padding:40px 
   <div class="livreur-page">
     <div class="livreur-hero">
       <h1>Devenez livreur MTK</h1>
-      <p>Rejoignez notre réseau de livreurs et gagnez votre vie à votre rythme.</p>
+      <p>Rejoignez notre réseau de livreurs et gagnez votre vie à votre rythme, en toute liberté.</p>
     </div>
     <div class="avantages">
-      <div class="avantage"><div class="avantage-icon"><i class="ti ti-coin"></i></div><div><h4>Revenus attractifs</h4><p>Gagnez entre 50 000 et 200 000 FCFA par mois</p></div></div>
+      <div class="avantage"><div class="avantage-icon"><i class="ti ti-coin"></i></div><div><h4>Revenus attractifs</h4><p>50 000 à 200 000 FCFA/mois</p></div></div>
       <div class="avantage"><div class="avantage-icon"><i class="ti ti-clock"></i></div><div><h4>Horaires libres</h4><p>Travaillez quand vous voulez</p></div></div>
-      <div class="avantage"><div class="avantage-icon"><i class="ti ti-shield-check"></i></div><div><h4>Assurance incluse</h4><p>Couverture accidents pendant chaque livraison</p></div></div>
-      <div class="avantage"><div class="avantage-icon"><i class="ti ti-star"></i></div><div><h4>Bonus de performance</h4><p>Des primes pour les meilleurs livreurs</p></div></div>
+      <div class="avantage"><div class="avantage-icon"><i class="ti ti-shield-check"></i></div><div><h4>Assurance incluse</h4><p>Couverture accidents incluse</p></div></div>
+      <div class="avantage"><div class="avantage-icon"><i class="ti ti-star"></i></div><div><h4>Bonus performance</h4><p>Primes pour les meilleurs</p></div></div>
     </div>
     <div class="card">
       <div style="font-size:16px;font-weight:700;margin-bottom:20px">Candidature livreur</div>
       <div class="form-grp"><label>Nom complet *</label><input type="text" id="l-nom" placeholder="Mamadou Diallo"></div>
-      <div class="form-grp"><label>Téléphone *</label><input type="tel" id="l-tel" placeholder="+221 77 123 45 67"></div>
+      <div class="form-grp"><label>Téléphone (WhatsApp) *</label><input type="tel" id="l-tel" placeholder="+221 77 123 45 67"></div>
       <div class="form-grp"><label>Email</label><input type="email" id="l-email" placeholder="votre@email.com"></div>
       <div class="form-grp"><label>Type de véhicule *</label>
         <select id="l-vehicule"><option value="">Choisir…</option><option value="moto">Moto</option><option value="velo">Vélo</option><option value="voiture">Voiture</option><option value="pied">À pied</option></select>
@@ -394,10 +542,10 @@ footer{background:var(--fond2);border-top:1px solid var(--bordure);padding:40px 
 <div class="page" id="pg-contact">
   <div class="contact-wrap">
     <div class="cmd-title">Nous contacter</div>
-    <div class="cmd-sub" style="margin-bottom:28px">Une question ? Un problème ? On est là pour vous.</div>
+    <div class="cmd-sub" style="margin-bottom:28px">Une question ? On vous répond rapidement.</div>
     <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;margin-bottom:32px">
-      <div class="card"><div class="card-icon"><i class="ti ti-phone"></i></div><h3>Téléphone</h3><p>+221 78 440 58 53<br><span style="font-size:11px;color:var(--texte2)">7h – 22h tous les jours</span></p></div>
-      <div class="card"><div class="card-icon"><i class="ti ti-brand-whatsapp"></i></div><h3>WhatsApp</h3><p>+221 78 440 58 53</p></div>
+      <div class="card"><div class="card-icon"><i class="ti ti-phone"></i></div><h3>Téléphone</h3><p><a href="tel:+221784405853" style="color:var(--rouge);text-decoration:none;font-weight:700">+221 78 440 58 53</a><br><span style="font-size:11px;color:var(--texte2)">7h – 22h tous les jours</span></p></div>
+      <div class="card"><div class="card-icon"><i class="ti ti-brand-whatsapp"></i></div><h3>WhatsApp</h3><p><a href="https://wa.me/221784405853" target="_blank" style="color:#25D366;text-decoration:none;font-weight:700">+221 78 440 58 53</a><br><span style="font-size:11px;color:var(--texte2)">Réponse rapide garantie</span></p></div>
       <div class="card"><div class="card-icon"><i class="ti ti-mail"></i></div><h3>Email</h3><p>contact@mtk.sn</p></div>
     </div>
     <div class="card">
@@ -415,12 +563,16 @@ footer{background:var(--fond2);border-top:1px solid var(--bordure);padding:40px 
 
 <footer id="main-footer">
   <div class="footer-inner">
-    <div><div class="footer-logo">MTK</div><div class="footer-desc">Thiak Thiak Swift — La livraison rapide et fiable au Sénégal.</div></div>
+    <div>
+      <div class="footer-logo">MTK</div>
+      <div class="footer-desc">Thiak Thiak Swift — La livraison rapide et fiable au Sénégal. Disponible 7j/7 de 6h à minuit.</div>
+      <a href="https://wa.me/221784405853" target="_blank" class="footer-wa"><i class="ti ti-brand-whatsapp"></i> +221 78 440 58 53</a>
+    </div>
     <div class="footer-col"><h4>Navigation</h4><a onclick="allerPage('accueil')">Accueil</a><a onclick="allerPage('commander')">Commander</a><a onclick="allerPage('offres')">Nos livreurs</a></div>
     <div class="footer-col"><h4>Rejoindre</h4><a onclick="allerPage('livreur')">Devenir livreur</a><a onclick="ouvrirAuth('inscription')">Créer un compte</a><a onclick="allerPage('contact')">Contact</a></div>
-    <div class="footer-col"><h4>Contact</h4><a>+221 78 440 58 53</a><a>contact@mtk.sn</a><a>Dakar, Sénégal</a></div>
+    <div class="footer-col"><h4>Contact</h4><a href="tel:+221784405853">+221 78 440 58 53</a><a href="https://wa.me/221784405853" target="_blank">WhatsApp</a><a>contact@mtk.sn</a><a>Dakar, Sénégal</a></div>
   </div>
-  <div class="footer-bottom">© 2025 MTK Thiak Thiak Swift. Tous droits réservés.</div>
+  <div class="footer-bottom">© 2025 MTK Thiak Thiak Swift · Tous droits réservés · Dakar, Sénégal</div>
 </footer>
 
 <!-- MODAL AUTH -->
@@ -464,8 +616,7 @@ const firebaseConfig = {
   projectId: "mtk-thiak-swift-8dc81",
   storageBucket: "mtk-thiak-swift-8dc81.firebasestorage.app",
   messagingSenderId: "917416103395",
-  appId: "1:917416103395:web:21e19b5f7944ffea9224d6",
-  measurementId: "G-B88J5JZPSJ"
+  appId: "1:917416103395:web:21e19b5f7944ffea9224d6"
 };
 
 const app = initializeApp(firebaseConfig);
@@ -506,21 +657,18 @@ window.sInscrire = async function(){
   const email = document.getElementById('reg-email').value.trim();
   const pwd = document.getElementById('reg-pwd').value;
   if(!nom||!tel||!email||!pwd){afficherToast('⚠️ Remplissez tous les champs');return;}
-  if(pwd.length<6){afficherToast('⚠️ Mot de passe trop court (min. 6 caractères)');return;}
+  if(pwd.length<6){afficherToast('⚠️ Mot de passe trop court');return;}
   const btn = document.getElementById('btn-register');
   btn.disabled=true; btn.textContent='Inscription…';
   try{
     const cred = await createUserWithEmailAndPassword(auth, email, pwd);
     await updateProfile(cred.user, {displayName: nom});
-    await addDoc(collection(db,'clients'),{
-      uid: cred.user.uid, nom, email, tel,
-      role:'client', createdAt: serverTimestamp()
-    });
+    await addDoc(collection(db,'clients'),{uid:cred.user.uid,nom,email,tel,role:'client',createdAt:serverTimestamp()});
     fermerAuth();
     afficherToast('🎉 Bienvenue ' + nom.split(' ')[0] + ' !');
     allerPage('dashboard');
   } catch(e){
-    const msgs={'auth/email-already-in-use':'Cet email est déjà utilisé','auth/invalid-email':'Email invalide','auth/weak-password':'Mot de passe trop faible'};
+    const msgs={'auth/email-already-in-use':'Email déjà utilisé','auth/invalid-email':'Email invalide','auth/weak-password':'Mot de passe trop faible'};
     afficherToast('❌ ' + (msgs[e.code]||e.message));
   }
   btn.disabled=false; btn.innerHTML='<i class="ti ti-user-plus"></i> Créer mon compte';
@@ -571,7 +719,7 @@ window.confirmerCommandeFirebase = async function(commande){
     commande.createdAt = serverTimestamp();
     if(window.utilisateurActuel) commande.uid = window.utilisateurActuel.uid;
     await addDoc(collection(db,'commandes'), commande);
-  } catch(e){ console.error('Erreur Firestore commande:', e); }
+  } catch(e){ console.error(e); }
 };
 
 window.chargerCommandesFirebase = async function(){
@@ -594,8 +742,8 @@ window.soumettreCandidat = async function(){
   try{
     const ref = 'MTK-LIV-' + Math.floor(1000+Math.random()*9000);
     await addDoc(collection(db,'candidatures_livreurs'),{
-      nom, tel, email: document.getElementById('l-email').value.trim()||null,
-      vehicule, zone, ref, statut:'en_attente', createdAt: serverTimestamp()
+      nom,tel,email:document.getElementById('l-email').value.trim()||null,
+      vehicule,zone,ref,statut:'en_attente',createdAt:serverTimestamp()
     });
     ['l-nom','l-tel','l-email','l-zone'].forEach(id=>document.getElementById(id).value='');
     document.getElementById('l-vehicule').value='';
@@ -613,16 +761,14 @@ window.envoyerContact = async function(){
   btn.disabled=true; btn.textContent='Envoi…';
   try{
     await addDoc(collection(db,'contacts'),{
-      nom, email, sujet: document.getElementById('c-sujet').value.trim()||'Sans sujet',
-      message: msg, lu: false, createdAt: serverTimestamp()
+      nom,email,sujet:document.getElementById('c-sujet').value.trim()||'Sans sujet',
+      message:msg,lu:false,createdAt:serverTimestamp()
     });
     ['c-nom','c-email','c-sujet','c-msg'].forEach(id=>document.getElementById(id).value='');
     afficherToast('✅ Message envoyé ! On vous répond sous 24h');
   } catch(e){ afficherToast('❌ Erreur : ' + e.message); }
   btn.disabled=false; btn.innerHTML='<i class="ti ti-send"></i> Envoyer le message';
 };
-
-console.log('✅ Firebase MTK connecté');
 </script>
 
 <script>
@@ -634,19 +780,20 @@ const LIVREURS = [
   {emoji:'🧑🏾',nom:'Fatou Sow',note:4.9,nb:134,dist:'1.3 km',eta:'18 min',prix:2800,vehicule:'Voiture',zone:'Almadies / Ngor'},
 ];
 
-let etapeActuelle = 1;
-let livreurSelectionne = null;
-let derniereCommande = null;
+let etapeActuelle=1,livreurSelectionne=null,derniereCommande=null;
+
+// Cacher bulle WA après 5 secondes
+setTimeout(()=>{ const b=document.getElementById('wa-bubble'); if(b) b.style.display='none'; },5000);
 
 function allerPage(id){
   document.querySelectorAll('.page').forEach(p=>p.classList.remove('act'));
-  const pg = document.getElementById('pg-'+id);
+  const pg=document.getElementById('pg-'+id);
   if(pg) pg.classList.add('act');
   document.querySelectorAll('.nl').forEach(n=>n.classList.remove('act'));
-  const nl = document.getElementById('nl-'+id);
+  const nl=document.getElementById('nl-'+id);
   if(nl) nl.classList.add('act');
-  const avecFooter = ['accueil','offres','livreur','contact'];
-  document.getElementById('main-footer').style.display = avecFooter.includes(id)?'block':'none';
+  const avecFooter=['accueil','offres','livreur','contact'];
+  document.getElementById('main-footer').style.display=avecFooter.includes(id)?'block':'none';
   window.scrollTo(0,0);
   if(id==='offres') afficherOffresPage();
   if(id==='dashboard'){
@@ -656,10 +803,9 @@ function allerPage(id){
   if(id==='suivi') afficherSuivi();
 }
 
-function ouvrirAuth(mode){
-  document.getElementById('modal-auth').classList.add('open');
-  switchTab(mode==='inscription'?'inscription':'connexion');
-}
+function toggleFaq(el){ el.classList.toggle('open'); }
+
+function ouvrirAuth(mode){ document.getElementById('modal-auth').classList.add('open'); switchTab(mode==='inscription'?'inscription':'connexion'); }
 function fermerAuth(){ document.getElementById('modal-auth').classList.remove('open'); }
 function fermerAuthSiClic(e){ if(e.target===document.getElementById('modal-auth')) fermerAuth(); }
 function switchTab(t){
@@ -670,14 +816,14 @@ function switchTab(t){
 }
 function toggleMenu(){ const m=document.getElementById('user-dropdown'); m.style.display=m.style.display==='block'?'none':'block'; }
 function fermerMenu(){ document.getElementById('user-dropdown').style.display='none'; }
-document.addEventListener('click', e=>{ if(!e.target.closest('#user-dropdown')&&!e.target.closest('#nav-user-btn')) fermerMenu(); });
+document.addEventListener('click',e=>{ if(!e.target.closest('#user-dropdown')&&!e.target.closest('#nav-user-btn')) fermerMenu(); });
 
 function allerEtape(n){
   if(n===2){
     const dep=document.getElementById('o-depart').value.trim();
     const arr=document.getElementById('o-arrivee').value.trim();
     if(!dep||!arr){afficherToast('⚠️ Renseignez le départ et l\'arrivée');return;}
-    document.getElementById('resume-trajet').textContent = dep+' → '+arr;
+    document.getElementById('resume-trajet').textContent=dep+' → '+arr;
     afficherOffresCommande();
   }
   document.getElementById('order-step'+etapeActuelle).classList.remove('act');
@@ -693,7 +839,7 @@ function allerEtape(n){
 }
 
 function afficherOffresCommande(){
-  document.getElementById('offres-list').innerHTML = LIVREURS.map((l,i)=>`
+  document.getElementById('offres-list').innerHTML=LIVREURS.map((l,i)=>`
     <div class="livreur-card" id="lc-${i}" onclick="choisirLivreur(${i})">
       <div class="livreur-av">${l.emoji}</div>
       <div class="livreur-info">
@@ -707,7 +853,7 @@ function afficherOffresCommande(){
 }
 
 function choisirLivreur(i){
-  livreurSelectionne = LIVREURS[i];
+  livreurSelectionne=LIVREURS[i];
   document.querySelectorAll('.livreur-card').forEach(c=>c.classList.remove('sel'));
   document.getElementById('lc-'+i).classList.add('sel');
   const dep=document.getElementById('o-depart').value;
@@ -731,22 +877,20 @@ async function confirmerCommande(){
   if(!nom||!tel){afficherToast('⚠️ Renseignez votre nom et téléphone');return;}
   if(!livreurSelectionne){afficherToast('⚠️ Aucun livreur sélectionné');return;}
   const ref='MTK-'+Math.floor(10000+Math.random()*90000);
-  const now = new Date();
-  const commande={
-    ref, nom, tel,
-    depart: document.getElementById('o-depart').value,
-    arrivee: document.getElementById('o-arrivee').value,
-    typeColis: document.getElementById('o-type').value,
-    urgence: document.getElementById('o-urgence').value,
-    instructions: document.getElementById('o-instructions').value,
-    paiement: document.getElementById('o-paiement').value,
-    livreur: livreurSelectionne,
-    statut:'en_route',
-    date: now.toLocaleDateString('fr-FR'),
-    heure: now.toLocaleTimeString('fr-FR',{hour:'2-digit',minute:'2-digit'})
+  const now=new Date();
+  const commande={ref,nom,tel,
+    depart:document.getElementById('o-depart').value,
+    arrivee:document.getElementById('o-arrivee').value,
+    typeColis:document.getElementById('o-type').value,
+    urgence:document.getElementById('o-urgence').value,
+    instructions:document.getElementById('o-instructions').value,
+    paiement:document.getElementById('o-paiement').value,
+    livreur:livreurSelectionne,statut:'en_route',
+    date:now.toLocaleDateString('fr-FR'),
+    heure:now.toLocaleTimeString('fr-FR',{hour:'2-digit',minute:'2-digit'})
   };
-  derniereCommande = commande;
-  document.getElementById('cmd-ref').textContent = ref;
+  derniereCommande=commande;
+  document.getElementById('cmd-ref').textContent=ref;
   allerEtape(4);
   afficherToast('🎉 Commande '+ref+' confirmée !');
   if(window.confirmerCommandeFirebase) await window.confirmerCommandeFirebase({...commande});
@@ -759,14 +903,14 @@ function nouvelleCommande(){
 }
 
 function afficherOffresPage(){
-  document.getElementById('offres-standalone').innerHTML = LIVREURS.map(l=>`
+  document.getElementById('offres-standalone').innerHTML=LIVREURS.map(l=>`
     <div class="livreur-card" style="cursor:default">
       <div class="livreur-av">${l.emoji}</div>
       <div class="livreur-info">
         <div class="livreur-nom">${l.nom}</div>
         <div class="livreur-stars">★★★★${l.note>=4.9?'★':'☆'} ${l.note} (${l.nb} livraisons)</div>
         <div class="livreur-meta"><i class="ti ti-map-pin" style="font-size:11px"></i> ${l.zone} · ${l.vehicule}</div>
-        <div style="margin-top:8px"><button class="btn-rouge" style="font-size:12px;padding:7px 14px" onclick="allerPage('commander')"><i class="ti ti-rocket"></i> Choisir ce livreur</button></div>
+        <div style="margin-top:10px"><button class="btn-rouge" style="font-size:12px;padding:7px 14px" onclick="allerPage('commander')"><i class="ti ti-rocket"></i> Choisir ce livreur</button></div>
       </div>
       <div class="livreur-prix"><div class="prix-num">${l.prix.toLocaleString('fr-FR')} FCFA</div><div class="prix-eta">ETA ${l.eta}</div></div>
     </div>
@@ -790,15 +934,13 @@ function afficherSuivi(){
       <div style="font-size:11px;color:var(--texte2);font-weight:700;text-transform:uppercase;letter-spacing:.5px;margin-bottom:6px">Commande ${cmd.ref}</div>
       <div style="font-size:20px;font-weight:900;margin-bottom:4px">🚀 Livreur en route</div>
       <div style="font-size:13px;color:var(--texte2);margin-bottom:20px">Arrivée estimée dans ${cmd.livreur.eta} · ${cmd.livreur.nom}</div>
-      <div>
-        ${etapes.map((e,i)=>`
-          <div class="suivi-step">
-            <div class="suivi-dot ${e.fait?(i===nbFait-1?'act':'done'):'wait'}">
-              ${e.fait?'<i class="ti ti-check" style="font-size:13px"></i>':(i+1)}
-            </div>
-            <div class="suivi-txt"><h4>${e.label}</h4><p>${e.desc}</p></div>
+      <div>${etapes.map((e,i)=>`
+        <div class="suivi-step">
+          <div class="suivi-dot ${e.fait?(i===nbFait-1?'act':'done'):'wait'}">
+            ${e.fait?'<i class="ti ti-check" style="font-size:13px"></i>':(i+1)}
           </div>
-        `).join('')}
+          <div class="suivi-txt"><h4>${e.label}</h4><p>${e.desc}</p></div>
+        </div>`).join('')}
       </div>
     </div>
     <div class="suivi-card">
@@ -814,7 +956,7 @@ function afficherSuivi(){
 async function chargerDashboard(){
   if(!window.utilisateurActuel) return;
   let cmds=[];
-  if(window.chargerCommandesFirebase) cmds = await window.chargerCommandesFirebase();
+  if(window.chargerCommandesFirebase) cmds=await window.chargerCommandesFirebase();
   const total=cmds.reduce((s,c)=>s+(c.livreur?c.livreur.prix:0),0);
   document.getElementById('dash-metrics').innerHTML=`
     <div class="metric"><div class="metric-val">${cmds.length}</div><div class="metric-lbl">Commandes</div></div>
