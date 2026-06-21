@@ -553,7 +553,7 @@ footer{background:var(--fond2);border-top:1px solid var(--bordure);padding:48px 
     <div class="footer-col"><h4>Rejoindre</h4><a onclick="allerPage('livreur')">Devenir livreur</a><a onclick="ouvrirAuth('inscription')">Créer un compte</a><a onclick="allerPage('contact')">Contact</a></div>
     <div class="footer-col"><h4>Contact</h4><a href="tel:+221784405853">+221 78 440 58 53</a><a href="https://wa.me/221784405853" target="_blank">WhatsApp</a><a>contact@mtk.sn</a></div>
   </div>
-  <div class="footer-bottom">© 2025 MTK Thiak Thiak Swift · Tous droits réservés · <span onclick="allerPage('admin')" style="cursor:pointer;opacity:.4;user-select:none" title="Espace Admin">·</span></div>
+  <div class="footer-bottom">© 2025 MTK Thiak Thiak Swift · Tous droits réservés · <span onclick="allerPage('admin')" style="cursor:pointer;color:var(--texte2);opacity:.5" title="Espace Admin">Admin</span></div>
 </footer>
 
 <!-- MODAL AUTH -->
@@ -922,7 +922,7 @@ function allerPage(id){
   document.querySelectorAll('.nl').forEach(n=>n.classList.remove('act'));
   const nl=document.getElementById('nl-'+id);
   if(nl) nl.classList.add('act');
-  const avecFooter=['accueil','offres','livreur','contact'];
+  const avecFooter=['accueil','offres','livreur','contact','admin'];
   document.getElementById('main-footer').style.display=avecFooter.includes(id)?'block':'none';
   window.scrollTo(0,0);
   if(id==='offres') afficherOffresPage();
@@ -1105,6 +1105,11 @@ function afficherToast(msg){
 
 // Accès admin via hash URL
 if(location.hash==='#admin') allerPage('admin');
+
+// Raccourci clavier Ctrl+Shift+A
+document.addEventListener('keydown', e=>{
+  if(e.ctrlKey && e.shiftKey && e.key==='A') allerPage('admin');
+});
 </script>
 </body>
 </html>
